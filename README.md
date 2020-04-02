@@ -1,4 +1,4 @@
-### power-rake-deploy
+# power-rake-deploy
 Deploy an app w/ secrets using...
 
 
