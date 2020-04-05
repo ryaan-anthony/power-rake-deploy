@@ -13,7 +13,7 @@ Deploy an app w/ config using Ansible.
 ### Power Rake Configuration
 
 ```
-export RAKE_ENV=production                  # default = development
+export RAKE_ENV=production                  # optional - default = development
 export RAKE_PROJECT=example                 # required - used to identify the current project
 ```
 
