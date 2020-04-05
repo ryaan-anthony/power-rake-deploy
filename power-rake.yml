@@ -1,0 +1,11 @@
+defaults: &defaults
+  project: <%= ENV.fetch('RAKE_PROJECT') %>
+
+development:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+production:
+  <<: *defaults

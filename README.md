@@ -1,23 +1,30 @@
 # power-rake-deploy
-Deploy an app w/ secrets using...
+Deploy an app w/ config using Ansible.
+
+- Depends on infrastructure created by `power-rake-provision`
+- Example deployable application `rack-app-example`
 
 
 ### Prerequisites 
-- AWS credentials
-- Docker `brew install docker`
+- AWS API credentials
+- Ansible
 
 
-### 1. Run/test app in a docker container (per workspace)
+### Power Rake Configuration
 
 ```
-roadmap:
-- docker file
-- rspec
+export RAKE_ENV=production                  # default = development
+export RAKE_PROJECT=example                 # required - used to identify the current project
 ```
 
----
+Want to have separate config files for different projects?
 
-### 2. Deploy app to EKS (per workspace)
+```
+export RAKE_CONFIG=other-project.yml        # optional - path to yaml file
+```
+
+
+### 1. Deploy app
 
 ```
 roadmap:
@@ -27,7 +34,7 @@ roadmap:
 
 ---
 
-### 3. Display info (per workspace)
+### 2. Display info
 
 ```
 roadmap:
@@ -37,16 +44,7 @@ roadmap:
 
 ---
 
-### 4. Edit secrets/credentials (per workspace)
-
-```
-roadmap:
-- rake task
-```
-
----
-
-### 5. Modify outbound TLS rules (per workspace)
+### 3. Edit application config
 
 ```
 roadmap:
