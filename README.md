@@ -23,8 +23,14 @@ Want to have separate config files for different projects?
 export RAKE_CONFIG=other-project.yml        # optional - path to yaml file
 ```
 
+### 1. SSH into instances
 
-### 1. Deploy app
+```
+bundle exec rake ssh
+```
+
+
+### 2. Deploy app
 
 ```
 roadmap:
@@ -34,7 +40,7 @@ roadmap:
 
 ---
 
-### 2. Display info
+### 3. Display info
 
 ```
 roadmap:
@@ -44,7 +50,7 @@ roadmap:
 
 ---
 
-### 3. Edit application config
+### 4. Edit application config
 
 ```
 roadmap:
