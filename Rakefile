@@ -2,18 +2,23 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
 require 'power-rake'
+require 'config-reader'
 require 'describe_instances'
 require 'fetch_credentials'
 
-NAMESPACE = "#{PowerRake.config.project}-#{PowerRake.current_env}"
+current_env = ENV.fetch('RAKE_ENV')
+current_config = ENV.fetch('RAKE_CONFIG')
+config = ConfigReader.new(current_config, current_env).config
+namespace = "#{config.project}-#{current_env}"
+
 task :ssh do
   # Find matching instances
-  query = "#{NAMESPACE}-*"
+  query = "#{namespace}-*"
   results = DescribeInstances.new('Name', query).call
   abort "No results for Name=#{query}" if results.nil?
 
   # Fetch matching credentials
-  secret_id = "#{NAMESPACE}-credentials"
+  secret_id = "#{namespace}-credentials"
   credentials = FetchCredentials.new(secret_id).call
   abort "No credentials for #{secret_id}" if credentials.nil?
 
@@ -23,8 +28,8 @@ task :ssh do
   try "echo '#{formatted.unshift(headers).join("\n")}' | column -s ',' -t"
 
   # Prompt user to select an instance
-  response = prompt("Instance ID (#{results.first[:instance_id]}): ")
-  instance_id = response.empty? ? results.first[:instance_id] : response
+  message = "Instance ID (#{results.first[:instance_id]}): "
+  instance_id = prompt(message) || results.first[:instance_id]
   selected = results.detect { |result| result[:instance_id] == instance_id }
 
   # Generate temp private key for ssh

@@ -2,8 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     aws-eventstream (1.0.3)
-    aws-partitions (1.294.0)
-    aws-sdk-core (3.92.0)
+    aws-partitions (1.295.0)
+    aws-sdk-core (3.93.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -17,9 +17,10 @@ GEM
     aws-sigv4 (1.1.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
     coderay (1.1.2)
+    config-reader (0.1.0)
     jmespath (1.4.0)
     method_source (1.0.0)
-    power-rake (0.0.10)
+    power-rake (0.1.4)
       rake
     pry (0.13.0)
       coderay (~> 1.1)
@@ -32,6 +33,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-ec2
   aws-sdk-secretsmanager
+  config-reader
   power-rake
   pry
 
