@@ -18,10 +18,10 @@ GEM
       aws-eventstream (~> 1.0, >= 1.0.2)
     coderay (1.1.2)
     config-reader (0.1.0)
+    interactive-rake (0.0.1)
+      rake
     jmespath (1.4.0)
     method_source (1.0.0)
-    power-rake (0.1.4)
-      rake
     pry (0.13.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -34,7 +34,7 @@ DEPENDENCIES
   aws-sdk-ec2
   aws-sdk-secretsmanager
   config-reader
-  power-rake
+  interactive-rake
   pry
 
 BUNDLED WITH

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'power-rake'
 gem 'config-reader'
+gem 'interactive-rake'
 gem 'aws-sdk-ec2'
 gem 'aws-sdk-secretsmanager'
 

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
-require 'power-rake'
 require 'config-reader'
+require 'interactive-rake'
 require 'describe_instances'
 require 'fetch_credentials'
 
@@ -25,7 +25,7 @@ task :ssh do
   # Output table of instances
   headers = 'instance_id,state,public_ip_address,launch_time'
   formatted = results.map { |result| result.values.join(',') }
-  try "echo '#{formatted.unshift(headers).join("\n")}' | column -s ',' -t"
+  system "echo '#{formatted.unshift(headers).join("\n")}' | column -s ',' -t"
 
   # Prompt user to select an instance
   message = "Instance ID (#{results.first[:instance_id]}): "
