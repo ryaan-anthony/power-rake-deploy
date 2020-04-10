@@ -1,0 +1,17 @@
+defaults: &defaults
+  project: <%= ENV.fetch('RAKE_PROJECT') %>
+  ssl_in:
+    cert_chain_path:  /path/to/file.pem
+    cert_path:        /path/to/file.crt
+    dh_params_path:   /path/to/file.dh_pem
+    key_path:         /path/to/file.key
+
+development:
+  <<: *defaults
+  ssl_out:
+   vault_path: secret/data/<%= ENV.fetch('RAKE_PROJECT') %>/development/ssl
+
+production:
+  <<: *defaults
+  ssl_out:
+   vault_path: secret/data/<%= ENV.fetch('RAKE_PROJECT') %>/production/ssl

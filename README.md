@@ -7,30 +7,31 @@ Deploy an app w/ config using Ansible.
 
 ### Prerequisites 
 - AWS API credentials
-- Ansible
+- HashiCorp Vault
 
-
-### Power Rake Configuration
-
-```
-export RAKE_ENV=production                  # optional - default = development
-export RAKE_PROJECT=example                 # required - used to identify the current project
-```
-
-Want to have separate config files for different projects?
-
-```
-export RAKE_CONFIG=other-project.yml        # optional - path to yaml file
-```
 
 ### 1. SSH into instances
 
+> defaults to `env=development` and `conf=config.yml`
+
 ```
-bundle exec rake ssh
+make ssh
+make ssh env=production
+make ssh env=production conf=project/config.yml
 ```
 
 
-### 2. Deploy app
+### 2. Upload SSL certs to instances
+
+> defaults to `env=development` and `conf=config.yml`
+
+```
+make upload_cert
+make upload_cert env=production
+make upload_cert env=production conf=project/config.yml
+```
+
+### 3. Deploy app
 
 ```
 roadmap:
@@ -40,7 +41,7 @@ roadmap:
 
 ---
 
-### 3. Display info
+### 4. Display info
 
 ```
 roadmap:
@@ -50,7 +51,7 @@ roadmap:
 
 ---
 
-### 4. Edit application config
+### 5. Edit application config
 
 ```
 roadmap:
