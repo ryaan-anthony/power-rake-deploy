@@ -11,7 +11,7 @@ class UploadCerts
   def call
     Vault.logical.write(
       app.config.ssl_out['vault_path'],
-      data: app.fetch_local_certs.call
+      data: app.fetch_local_certs
     )
   end
 end

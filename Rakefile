@@ -2,22 +2,22 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
 require 'interactive-rake'
-require 'app-manager'
+require 'application'
 
-AppManager.configure do |config|
+Application.configure do |config|
   config.environment = ENV.fetch('PROJECT_ENV')
   config.config_path = ENV.fetch('PROJECT_CONFIG')
 end
 
 task :ssh do
-  AppManager.ssh_handler.call
+  Application.ssh_handler
 end
 
 task :ssl_upload do
-  AppManager.ssl_upload.call
+  Application.ssl_upload
 end
 
 task :ssl_deploy do
-  AppManager.ssl_deploy.call
+  Application.ssl_deploy
 end
 

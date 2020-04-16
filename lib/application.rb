@@ -4,8 +4,9 @@ require 'services/fetch-local-certs'
 require 'services/ssh-handler'
 require 'services/deploy-certs'
 require 'services/upload-certs'
+require 'services/upload-to-server'
 
-class AppManager
+class Application
   class << self
     attr_accessor :config_path, :environment
 
@@ -18,19 +19,23 @@ class AppManager
     end
 
     def ssh_handler
-      SshHandler.new(self)
+      SshHandler.new(self).call
     end
 
     def ssl_upload
-      UploadCerts.new(self)
+      UploadCerts.new(self).call
     end
 
     def ssl_deploy
-      DeployCerts.new(self)
+      DeployCerts.new(self).call
     end
 
     def fetch_local_certs
-      FetchLocalCerts.new(self)
+      FetchLocalCerts.new(self).call
+    end
+
+    def upload_to_server(data)
+      UploadToServer.new(self).call(data)
     end
   end
 end

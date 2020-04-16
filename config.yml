@@ -1,17 +1,19 @@
 defaults: &defaults
-  project: <%= ENV.fetch('RAKE_PROJECT') %>
+  project: ryansexampleproject
   ssl_in:
     cert_chain_path:  /path/to/file.pem
     cert_path:        /path/to/file.crt
     dh_params_path:   /path/to/file.dh_pem
     key_path:         /path/to/file.key
+  ssl_out:
+    vault_path: secret/data/example-project/<%= ENV.fetch('PROJECT_ENV') %>/ssl
+    cert_chain_path:  /home/centos/file.pem
+    cert_path:        /home/centos/file.crt
+    dh_params_path:   /home/centos/file.dh_pem
+    key_path:         /home/centos/file.key
 
 development:
   <<: *defaults
-  ssl_out:
-   vault_path: secret/data/<%= ENV.fetch('RAKE_PROJECT') %>/development/ssl
 
 production:
   <<: *defaults
-  ssl_out:
-   vault_path: secret/data/<%= ENV.fetch('RAKE_PROJECT') %>/production/ssl
